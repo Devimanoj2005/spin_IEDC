@@ -2,6 +2,286 @@
 <html lang="en">
 
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spin to Win</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Bagel+Fat+One&family=Space+Mono:wght@400;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:   #F7EFE3;
+    --card:    #FDF7EC;
+    --ink:     #141414;
+    --lav:     #DCBFF7;
+    --lav-dk:  #C9A4EE;
+    --orange:  #F0522C;
+    --lime:    #D2E85A;
+    --pink:    #F09EC0;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background: var(--card);
+    font-family: 'Space Mono', ui-monospace, 'Courier New', monospace;
+    color: var(--ink);
+    padding: 0;
+  }
+
+  /* ---------- card (fills the viewport) ---------- */
+  .card {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    background: var(--card);
+    border-radius: 0;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    transition: opacity .35s ease, transform .35s ease;
+  }
+  .card.closed { opacity: 0; transform: scale(.96); pointer-events: none; }
+  .card[hidden] { display: none !important; }
+
+  .close {
+    position: absolute;
+    top: 14px; right: 16px;
+    width: 30px; height: 30px;
+    border: 0; background: transparent;
+    color: var(--ink);
+    font-size: 22px; line-height: 1;
+    cursor: pointer;
+    opacity: .8;
+    z-index: 20;
+    font-family: inherit;
+  }
+  .close:hover { opacity: 1; }
+
+  /* ---------- wheel side ---------- */
+  .wheel-side {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* 84% of the column leaves room for the pointer's overhang */
+  .wheel-wrap {
+    position: relative;
+    width: min(88vh, 86%);
+    aspect-ratio: 1;
+  }
+  #wheel {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: transform 5.4s cubic-bezier(0.15, 0.68, 0.10, 1);
+  }
+  /* sized as a fraction of the wheel so it scales with the viewport */
+  .pointer {
+    position: absolute;
+    top: 50%;
+    right: -5.8%;
+    transform: translateY(-50%);
+    width: 16%; height: auto;
+    z-index: 6;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,.18));
+  }
+  .pointer.kick { animation: kick .18s ease; }
+  @keyframes kick {
+    0%,100% { transform: translateY(-50%) translateX(0); }
+    50%     { transform: translateY(-50%) translateX(7px); }
+  }
+
+  /* ---------- content side ---------- */
+  .content {
+    position: relative;
+    z-index: 4;
+    padding: 56px 54px 46px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0;
+  }
+  .headline { position: relative; margin-bottom: 26px; }
+  .spin-to {
+    font-family: 'Silkscreen', 'Courier New', monospace;
+    font-weight: 700;
+    font-size: clamp(34px, 5vw, 78px);
+    letter-spacing: 2px;
+    line-height: .95;
+    margin: 0;
+  }
+  .win {
+    font-family: 'Bagel Fat One', 'Trebuchet MS', cursive;
+    font-size: clamp(50px, 7.4vw, 116px);
+    color: var(--pink);
+    line-height: .85;
+    margin: -6px 0 0;
+    display: block;
+    transform: rotate(-2deg);
+  }
+  .sparkle {
+    font-size: .32em;
+    vertical-align: super;
+    margin-left: -.1em;
+  }
+  .sticker {
+    position: absolute;
+    right: -58px;
+    bottom: 16px;
+    background: var(--lime);
+    color: var(--ink);
+    font-family: 'Caveat', 'Segoe Script', cursive;
+    font-weight: 700;
+    font-size: clamp(19px, 1.7vw, 25px);
+    line-height: 1.05;
+    padding: 9px 16px;
+    border-radius: 40% 46% 42% 48% / 58% 54% 56% 52%;
+    transform: rotate(-7deg);
+    white-space: nowrap;
+  }
+
+  .blurb {
+    font-size: clamp(13px, 1.3vw, 19px);
+    line-height: 1.85;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    max-width: 42ch;
+    margin: 0 0 32px;
+  }
+
+  .spin-btn {
+    width: min(100%, 340px);
+    padding: 18px 22px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--lav);
+    color: var(--ink);
+    font-family: inherit;
+    font-weight: 700;
+    font-size: clamp(15px, 1.35vw, 20px);
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform .14s ease, background .2s ease;
+  }
+  .spin-btn:hover:not(:disabled) { background: var(--lav-dk); transform: translateY(-1px); }
+  .spin-btn:active:not(:disabled) { transform: translateY(1px); }
+  .spin-btn:disabled { opacity: .55; cursor: not-allowed; }
+
+  .no-thanks {
+    margin-top: 16px;
+    background: none; border: 0;
+    font-family: inherit;
+    font-size: clamp(11px, 1vw, 14px);
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: .75;
+    cursor: pointer;
+  }
+  .no-thanks:hover { opacity: 1; text-decoration: underline; }
+
+  /* ---------- result ---------- */
+  .result {
+    margin-top: 18px;
+    display: none;
+  }
+  .result.has {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .result-inner {
+    background: var(--lime);
+    border-radius: 999px;
+    padding: 12px 26px;
+    font-size: clamp(12px, 1.1vw, 16px);
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(8px) scale(.94);
+    transition: all .4s ease;
+  }
+  .result-inner.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    animation: pop .5s ease;
+  }
+  @keyframes pop {
+    0% { transform: scale(.82); } 55% { transform: scale(1.07); } 100% { transform: scale(1); }
+  }
+
+  /* ---------- reopen chip ---------- */
+  .reopen {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: fit-content; height: fit-content;
+    padding: 14px 28px;
+    border: 0; border-radius: 999px;
+    background: var(--lav);
+    font-family: inherit; font-weight: 700;
+    font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer;
+  }
+  .reopen[hidden] { display: none !important; }
+
+  /* ---------- confetti ---------- */
+  .confetti {
+    position: fixed;
+    top: -12px;
+    width: 9px; height: 9px;
+    border-radius: 2px;
+    z-index: 100;
+    pointer-events: none;
+    animation: fall linear forwards;
+  }
+  @keyframes fall {
+    to { transform: translateY(112vh) rotate(760deg); opacity: .25; }
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 820px) {
+    .card {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+    }
+    .close {
+      background: var(--card);
+      border-radius: 50%;
+      top: 12px; right: 12px;
+    }
+    .wheel-side { padding: 22px 0 0; }
+    .wheel-wrap { width: min(40vh, 80%); }
+    .content {
+      padding: 24px 24px 40px;
+      justify-content: center;
+    }
+    /* sticker sits below the wordmark instead of hanging off the side */
+    .sticker {
+      position: static;
+      display: inline-block;
+      right: auto; bottom: auto;
+      margin-top: 10px;
+      font-size: 17px;
+    }
+    .headline { margin-bottom: 22px; }
+  }
+
+  @media (max-width: 400px) {
+    .card { grid-template-rows: 40vh 1fr; }
+  }
+
+</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spin the Wheel - Interactive Decision Maker</title>
@@ -533,6 +813,216 @@
 
 <body>
 
+<div class="card" id="card">
+  <button class="close" id="closeBtn" aria-label="Close">&times;</button>
+
+  <div class="wheel-side">
+    <div class="wheel-wrap">
+      <svg id="wheel" viewBox="0 0 400 400" aria-label="Prize wheel"></svg>
+      <svg class="pointer" id="pointer" viewBox="0 0 82 52" aria-hidden="true">
+        <path d="M2 26 C 18 10, 35 2, 52 2 C 69 2, 80 12, 80 26 C 80 40, 69 50, 52 50 C 35 50, 18 42, 2 26 Z" fill="#F0522C"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="headline">
+      <h1 class="spin-to">SPIN TO</h1>
+      <span class="win">win<span class="sparkle">&#10024;</span></span>
+      <span class="sticker">How much will<br>you save?</span>
+    </div>
+
+    <p class="blurb">Love a sneaky surprise?<br>Spin the wheel to reveal your<br>exclusive discount!</p>
+
+    <button class="spin-btn" id="spinBtn">Spin to win</button>
+
+    <div class="result">
+      <div class="result-inner" id="resultCard">You won: <span id="resultText"></span></div>
+    </div>
+
+    <button class="no-thanks" id="noThanks">No thanks</button>
+  </div>
+</div>
+
+<button class="reopen" id="reopenBtn" hidden>Open the offer</button>
+
+<script>
+const LAV = '#DCBFF7', ORANGE = '#F0522C', LIME = '#D2E85A';
+
+// Wheel reads clockwise from 12 o'clock. Pointer sits at 3 o'clock (90deg).
+const segments = [
+  { lines: ['1'], color: LAV    },
+  { lines: ['2'], color: LIME   },
+  { lines: ['3'], color: ORANGE },
+  { lines: ['4'], color: LAV    },
+  { lines: ['5'], color: LIME   },
+  { lines: ['6'], color: ORANGE },
+  { lines: ['7'], color: LAV    },
+  { lines: ['8'], color: LIME   }
+];
+
+const n = segments.length;
+const anglePer = 360 / n;
+const svg = document.getElementById('wheel');
+const cx = 200, cy = 200;
+const rRim = 198;   // outer cream rim
+const r    = 186;   // coloured slices
+const rDot = 172;   // dot ring
+const rHub = 46;    // centre circle
+const rText = 124;  // label distance from centre
+
+function polar(radius, angleDeg) {
+  const a = (angleDeg - 90) * Math.PI / 180;
+  return { x: cx + radius * Math.cos(a), y: cy + radius * Math.sin(a) };
+}
+
+function slicePath(startAngle, endAngle) {
+  const s = polar(r, startAngle);
+  const e = polar(r, endAngle);
+  const largeArc = endAngle - startAngle > 180 ? 1 : 0;
+  return 'M ' + cx + ' ' + cy +
+         ' L ' + s.x.toFixed(2) + ' ' + s.y.toFixed(2) +
+         ' A ' + r + ' ' + r + ' 0 ' + largeArc + ' 1 ' + e.x.toFixed(2) + ' ' + e.y.toFixed(2) + ' Z';
+}
+
+let markup = '<circle cx="' + cx + '" cy="' + cy + '" r="' + rRim + '" fill="#FDF7EC"/>';
+
+segments.forEach((seg, i) => {
+  const start = i * anglePer;
+  const end   = start + anglePer;
+  const mid   = start + anglePer / 2;
+
+  markup += '<path d="' + slicePath(start, end) + '" fill="' + seg.color + '"/>';
+
+  const lines = seg.lines;
+  const longest = Math.max(...lines.map(t => t.length));
+  const short = longest <= 2;          // the 1-8 numbers
+  const fs = short ? 72 : (lines.length > 1 ? 13 : 16);
+  const startDy = -((lines.length - 1) * (fs + 3)) / 2;
+
+  let tx, ty, rot;
+  if (short) {
+    // Numbers stand upright in the middle of their slice (they turn with the wheel).
+    const p = polar(rText, mid);
+    tx = p.x; ty = p.y; rot = 0;
+  } else {
+    // Long labels run along the radius, flipped on the left half to stay readable.
+    rot = mid - 90;
+    let dir = 1;
+    const norm = ((rot % 360) + 360) % 360;
+    if (norm > 90 && norm < 270) { rot += 180; dir = -1; }
+    tx = cx + dir * rText; ty = cy;
+  }
+
+  markup += '<g transform="rotate(' + rot.toFixed(2) + ' ' + cx + ' ' + cy + ')">' +
+              '<text x="' + tx.toFixed(2) + '" y="' + ty.toFixed(2) + '" text-anchor="middle" ' +
+                    'dominant-baseline="middle" fill="#141414" ' +
+                    'font-family="Space Mono, monospace" font-size="' + fs + '" ' +
+                    'font-weight="700" letter-spacing="0.6">' +
+                lines.map((t, li) =>
+                  '<tspan x="' + tx.toFixed(2) + '" dy="' + (li === 0 ? startDy : fs + 3) + '">' + t + '</tspan>'
+                ).join('') +
+              '</text>' +
+            '</g>';
+});
+
+// White dots on the rim, one per slice boundary
+for (let i = 0; i < n; i++) {
+  const p = polar(rDot, i * anglePer);
+  markup += '<circle cx="' + p.x.toFixed(2) + '" cy="' + p.y.toFixed(2) + '" r="3.4" fill="#FDF7EC"/>';
+}
+
+// Centre hub
+markup += '<circle cx="' + cx + '" cy="' + cy + '" r="' + rHub + '" fill="#FDF7EC"/>';
+
+svg.innerHTML = markup;
+
+/* ---------------- spin ---------------- */
+const spinBtn   = document.getElementById('spinBtn');
+const resultCard = document.getElementById('resultCard');
+const resultText = document.getElementById('resultText');
+const pointer    = document.getElementById('pointer');
+
+// Pointer sits at 3 o'clock at every size.
+const POINTER_ANGLE = 90;
+let rotation = 0;
+let spinning = false;
+
+function confetti() {
+  const colors = [LAV, ORANGE, LIME, '#F09EC0'];
+  for (let i = 0; i < 70; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.left = (Math.random() * 100) + 'vw';
+    c.style.background = colors[Math.floor(Math.random() * colors.length)];
+    c.style.animationDuration = (2 + Math.random() * 1.6) + 's';
+    c.style.animationDelay = (Math.random() * 0.4) + 's';
+    const size = 6 + Math.random() * 7;
+    c.style.width = size + 'px';
+    c.style.height = size + 'px';
+    if (Math.random() > 0.6) c.style.borderRadius = '50%';
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 4600);
+  }
+}
+
+spinBtn.addEventListener('click', () => {
+  if (spinning) return;
+  spinning = true;
+  spinBtn.disabled = true;
+  resultCard.classList.remove('show');
+
+  const winner = Math.floor(Math.random() * n);
+  const segMid = winner * anglePer + anglePer / 2;
+  const jitter = (Math.random() - 0.5) * anglePer * 0.5;
+
+  const targetMod  = ((POINTER_ANGLE - segMid + jitter) % 360 + 360) % 360;
+  const currentMod = ((rotation % 360) + 360) % 360;
+  let delta = targetMod - currentMod;
+  if (delta < 0) delta += 360;
+
+  rotation += (6 + Math.floor(Math.random() * 3)) * 360 + delta;
+  svg.style.transform = 'rotate(' + rotation + 'deg)';
+
+  // nudge the pointer as slices pass by
+  const tickTimer = setInterval(() => {
+    pointer.classList.add('kick');
+    setTimeout(() => pointer.classList.remove('kick'), 180);
+  }, 420);
+
+  setTimeout(() => {
+    clearInterval(tickTimer);
+    pointer.classList.remove('kick');
+    spinning = false;
+    spinBtn.disabled = false;
+    spinBtn.textContent = 'Spin again';
+    resultText.textContent = segments[winner].lines.join(' ');
+    document.querySelector('.result').classList.add('has');
+    requestAnimationFrame(() => resultCard.classList.add('show'));
+    confetti();
+  }, 5450);
+});
+
+/* ---------------- close / reopen ---------------- */
+const card = document.getElementById('card');
+const reopenBtn = document.getElementById('reopenBtn');
+
+function closeCard() {
+  card.classList.add('closed');
+  setTimeout(() => { card.hidden = true; reopenBtn.hidden = false; }, 350);
+}
+function openCard() {
+  card.hidden = false;
+  reopenBtn.hidden = true;
+  requestAnimationFrame(() => card.classList.remove('closed'));
+}
+
+document.getElementById('closeBtn').addEventListener('click', closeCard);
+document.getElementById('noThanks').addEventListener('click', closeCard);
+reopenBtn.addEventListener('click', openCard);
+</script>
+</body>
+</html>
     <!-- Header Navigation -->
     <header>
         <div class="logo-title">
