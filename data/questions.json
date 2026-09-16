@@ -1,0 +1,362 @@
+[
+  {
+    "id": "q1",
+    "difficulty": "Easy",
+    "question": "What is the main purpose of an IEDC in a college?",
+    "options": [
+      { "id": "a", "text": "To conduct only placement examinations" },
+      { "id": "b", "text": "To encourage students to experiment, innovate and explore entrepreneurship" },
+      { "id": "c", "text": "To replace all academic departments" },
+      { "id": "d", "text": "To provide automatic employment after graduation" }
+    ],
+    "correctOptionId": "b"
+  },
+  {
+    "id": "q2",
+    "difficulty": "Medium",
+    "question": "A student team notices that many campus lights remain switched on unnecessarily. They build a sensor-based prototype and test it in two classrooms. This is an example of:",
+    "options": [
+      { "id": "a", "text": "Student innovation and prototyping" },
+      { "id": "b", "text": "Corporate acquisition" },
+      { "id": "c", "text": "Product retirement" },
+      { "id": "d", "text": "Financial auditing" }
+    ],
+    "correctOptionId": "a"
+  },
+  {
+    "id": "q3",
+    "difficulty": "Medium",
+    "question": "Which activity would best support an entrepreneurial culture in an IEDC?",
+    "options": [
+      { "id": "a", "text": "A workshop where students pitch ideas and receive feedback" },
+      { "id": "b", "text": "Memorising business definitions without applying them" },
+      { "id": "c", "text": "Restricting all projects to textbook examples" },
+      { "id": "d", "text": "Avoiding failure by not testing ideas" }
+    ],
+    "correctOptionId": "a"
+  },
+  {
+    "id": "q4",
+    "difficulty": "Medium-Tricky",
+    "question": "A student has a clever product idea but has not spoken to any potential user. What should the student do first?",
+    "options": [
+      { "id": "a", "text": "Manufacture 10,000 units" },
+      { "id": "b", "text": "Conduct user research and understand the problem" },
+      { "id": "c", "text": "Design an expensive logo" },
+      { "id": "d", "text": "Apply for an IPO" }
+    ],
+    "correctOptionId": "b"
+  },
+  {
+    "id": "q5",
+    "difficulty": "Easy",
+    "question": "KSUM primarily works to promote:",
+    "options": [
+      { "id": "a", "text": "Entrepreneurship, innovation and incubation" },
+      { "id": "b", "text": "Only sports training" },
+      { "id": "c", "text": "School-level textbook publishing" },
+      { "id": "d", "text": "Tourism ticket booking" }
+    ],
+    "correctOptionId": "a"
+  },
+  {
+    "id": "q6",
+    "difficulty": "Medium",
+    "question": "Which of the following is a student-focused initiative associated with KSUM?",
+    "options": [
+      { "id": "a", "text": "Campus Tax Mission" },
+      { "id": "b", "text": "Kerala Premier League" },
+      { "id": "c", "text": "IDEA Fest" },
+      { "id": "d", "text": "State Driving Test" }
+    ],
+    "correctOptionId": "c"
+  },
+  {
+    "id": "q7",
+    "difficulty": "Medium",
+    "question": "What is one likely benefit of connecting a student startup with an incubation programme?",
+    "options": [
+      { "id": "a", "text": "Exemption from all legal requirements" },
+      { "id": "b", "text": "Guaranteed success without testing" },
+      { "id": "c", "text": "Automatic admission to every college" },
+      { "id": "d", "text": "Access to mentoring, facilities, networks and structured support" }
+    ],
+    "correctOptionId": "d"
+  },
+  {
+    "id": "q8",
+    "difficulty": "Medium-Tricky",
+    "question": "An IEDC Summit would most likely bring together:",
+    "options": [
+      { "id": "a", "text": "Student innovators and IEDC representatives" },
+      { "id": "b", "text": "Only professional athletes" },
+      { "id": "c", "text": "Film actors and music producers" },
+      { "id": "d", "text": "International diplomats only" }
+    ],
+    "correctOptionId": "a"
+  },
+  {
+    "id": "q9",
+    "difficulty": "Easy",
+    "question": "Gen-robotics is widely associated with which product?",
+    "options": [
+      { "id": "a", "text": "A satellite navigation app" },
+      { "id": "b", "text": "A mobile payment wallet" },
+      { "id": "c", "text": "A food-delivery platform" },
+      { "id": "d", "text": "Bandicoot, a robotic system for hazardous manhole cleaning" }
+    ],
+    "correctOptionId": "d"
+  },
+  {
+    "id": "q10",
+    "difficulty": "Medium",
+    "question": "IBS (International Business Services) Software, founded by V. K. Mathews, is associated mainly with:",
+    "options": [
+      { "id": "a", "text": "Organic farming equipment only" },
+      { "id": "b", "text": "Travel, transportation and logistics technology" },
+      { "id": "c", "text": "Online gaming hardware only" },
+      { "id": "d", "text": "School uniform manufacturing" }
+    ],
+    "correctOptionId": "b"
+  },
+  {
+    "id": "q11",
+    "difficulty": "Easy",
+    "question": "Which city in Kerala is often called the state's major IT and startup hub?",
+    "options": [
+      { "id": "a", "text": "Kozhikode" },
+      { "id": "b", "text": "Thiruvananthapuram" },
+      { "id": "c", "text": "Kochi" },
+      { "id": "d", "text": "Kannur" }
+    ],
+    "correctOptionId": "b"
+  },
+  {
+    "id": "q12",
+    "difficulty": "Medium",
+    "question": "A Kerala-based student startup builds a low-cost device to monitor air quality in classrooms. This is best described as an example of:",
+    "options": [
+      { "id": "a", "text": "Traditional agriculture" },
+      { "id": "b", "text": "Tech-enabled social innovation" },
+      { "id": "c", "text": "Purely entertainment software" },
+      { "id": "d", "text": "Import–export trading only" }
+    ],
+    "correctOptionId": "b"
+  },
+  {
+    "id": "q13",
+    "difficulty": "Medium",
+    "question": "A student builds a very basic version of an app and releases it to a small group of users to collect feedback before developing the full product. This approach is called:",
+    "options": [
+      { "id": "a", "text": "Prototype" },
+      { "id": "b", "text": "Minimum Viable Product (MVP)" },
+      { "id": "c", "text": "Patent" },
+      { "id": "d", "text": "Business model canvas" }
+    ],
+    "correctOptionId": "b"
+  },
+  {
+    "id": "q14",
+    "difficulty": "Medium",
+    "question": "A program that supports early-stage startups with mentorship, workspace, and networking for a fixed short term, often ending with a demo/pitch day, is called a:",
+    "options": [
+      { "id": "a", "text": "Accelerator" },
+      { "id": "b", "text": "Patent office" },
+      { "id": "c", "text": "Trade union" },
+      { "id": "d", "text": "Retail chain" }
+    ],
+    "correctOptionId": "a"
+  },
+  {
+    "id": "q15",
+    "difficulty": "Medium",
+    "question": "When customers genuinely need a product and are willing to pay for it, a startup is said to have achieved:",
+    "options": [
+      { "id": "a", "text": "Business model" },
+      { "id": "b", "text": "Design thinking" },
+      { "id": "c", "text": "Product-market fit" },
+      { "id": "d", "text": "Intellectual property" }
+    ],
+    "correctOptionId": "c"
+  },
+  {
+    "id": "q16",
+    "difficulty": "Easy",
+    "question": "An engineering student invents a unique device and wants legal protection so others cannot copy the invention. The most suitable form of protection is:",
+    "options": [
+      { "id": "a", "text": "Trademark license" },
+      { "id": "b", "text": "Patent" },
+      { "id": "c", "text": "Franchise agreement" },
+      { "id": "d", "text": "Business loan" }
+    ],
+    "correctOptionId": "b"
+  },
+  {
+    "id": "q17",
+    "difficulty": "Easy",
+    "question": "The technology that allows everyday physical devices like lights, fans, and sensors to connect and exchange data over the internet is called:",
+    "options": [
+      { "id": "a", "text": "Blockchain" },
+      { "id": "b", "text": "Internet of Things (IoT)" },
+      { "id": "c", "text": "Cloud computing" },
+      { "id": "d", "text": "5G" }
+    ],
+    "correctOptionId": "b"
+  },
+  {
+    "id": "q18",
+    "difficulty": "Easy",
+    "question": "Tools like ChatGPT that can write essays, generate images, or compose music from prompts are based mainly on:",
+    "options": [
+      { "id": "a", "text": "Cybersecurity" },
+      { "id": "b", "text": "Generative AI" },
+      { "id": "c", "text": "Blockchain" },
+      { "id": "d", "text": "Robotics" }
+    ],
+    "correctOptionId": "b"
+  },
+  {
+    "id": "q19",
+    "difficulty": "Easy",
+    "question": "Storing files and running applications on remote servers accessed via the internet, instead of on a local computer, is known as:",
+    "options": [
+      { "id": "a", "text": "Cloud computing" },
+      { "id": "b", "text": "Cybersecurity" },
+      { "id": "c", "text": "Automation" },
+      { "id": "d", "text": "Blockchain" }
+    ],
+    "correctOptionId": "a"
+  },
+  {
+    "id": "q20",
+    "difficulty": "Easy",
+    "question": "A group of students identifies a problem faced by local farmers and brainstorms multiple possible solutions before selecting one to develop. This approach is called:",
+    "options": [
+      { "id": "a", "text": "Market segmentation" },
+      { "id": "b", "text": "Franchising" },
+      { "id": "c", "text": "Design thinking" },
+      { "id": "d", "text": "Liquidation" }
+    ],
+    "correctOptionId": "c"
+  },
+  {
+    "id": "q21",
+    "difficulty": "Easy",
+    "question": "A startup presents its business idea, market opportunity, and financial projections to potential investors in a short presentation. This is known as a:",
+    "options": [
+      { "id": "a", "text": "Balance sheet" },
+      { "id": "b", "text": "Pitch deck" },
+      { "id": "c", "text": "Patent application" },
+      { "id": "d", "text": "Tax return" }
+    ],
+    "correctOptionId": "b"
+  },
+  {
+    "id": "q22",
+    "difficulty": "Easy",
+    "question": "Which of the following best describes a \"business model\"?",
+    "options": [
+      { "id": "a", "text": "A list of employees in the company" },
+      { "id": "b", "text": "A spreadsheet of daily expenses" },
+      { "id": "c", "text": "A legal document for registering a company" },
+      { "id": "d", "text": "A plan for how a company creates, delivers, and captures value" }
+    ],
+    "correctOptionId": "d"
+  },
+  {
+    "id": "q23",
+    "difficulty": "Medium",
+    "question": "A student team wants to test whether people will actually pay for their new service before building the full platform. They create a simple landing page with a \"Sign Up\" button to gauge interest. This is an example of:",
+    "options": [
+      { "id": "a", "text": "Market validation" },
+      { "id": "b", "text": "Trademark registration" },
+      { "id": "c", "text": "Asset liquidation" },
+      { "id": "d", "text": "Tax filing" }
+    ],
+    "correctOptionId": "a"
+  },
+  {
+    "id": "q24",
+    "difficulty": "Easy",
+    "question": "Which of the following is a common source of early-stage funding for student startups?",
+    "options": [
+      { "id": "a", "text": "Venture capital only" },
+      { "id": "b", "text": "Angel investors, grants, and seed funds" },
+      { "id": "c", "text": "Stock market IPOs" },
+      { "id": "d", "text": "Corporate bonds" }
+    ],
+    "correctOptionId": "b"
+  },
+  {
+    "id": "q25",
+    "difficulty": "Easy",
+    "question": "A team builds a working model of their drone to demonstrate its capabilities to potential investors, even though it's not the final polished product. This model is called a:",
+    "options": [
+      { "id": "a", "text": "Minimum Viable Product (MVP)" },
+      { "id": "b", "text": "Patent" },
+      { "id": "c", "text": "Prototype" },
+      { "id": "d", "text": "Business plan" }
+    ],
+    "correctOptionId": "c"
+  },
+  {
+    "id": "q26",
+    "difficulty": "Easy",
+    "question": "Which of the following best describes \"bootstrapping\" a startup?",
+    "options": [
+      { "id": "a", "text": "Raising large amounts of venture capital" },
+      { "id": "b", "text": "Funding the business using personal savings and revenue, without external investors" },
+      { "id": "c", "text": "Selling the company to a larger corporation" },
+      { "id": "d", "text": "Applying for a government loan" }
+    ],
+    "correctOptionId": "b"
+  },
+  {
+    "id": "q27",
+    "difficulty": "Medium",
+    "question": "A startup offers early users a discounted price in exchange for feedback and testimonials. This strategy is primarily aimed at:",
+    "options": [
+      { "id": "a", "text": "Increasing burn rate" },
+      { "id": "b", "text": "Reducing market validation" },
+      { "id": "c", "text": "Filing a patent" },
+      { "id": "d", "text": "Building early traction and social proof" }
+    ],
+    "correctOptionId": "d"
+  },
+  {
+    "id": "q28",
+    "difficulty": "Medium",
+    "question": "A startup develops a unique algorithm for route optimization. To prevent competitors from copying it, the company keeps the details confidential and shares it only with trusted employees. This is an example of protecting:",
+    "options": [
+      { "id": "a", "text": "A trademark" },
+      { "id": "b", "text": "A trade secret" },
+      { "id": "c", "text": "A copyright" },
+      { "id": "d", "text": "A franchise" }
+    ],
+    "correctOptionId": "b"
+  },
+  {
+    "id": "q29",
+    "difficulty": "Easy",
+    "question": "Which term describes the unique advantage that makes a startup's product or service different from and better than competitors?",
+    "options": [
+      { "id": "a", "text": "Unique Selling Proposition (USP)" },
+      { "id": "b", "text": "Revenue model" },
+      { "id": "c", "text": "Balance sheet" },
+      { "id": "d", "text": "Cash flow statement" }
+    ],
+    "correctOptionId": "a"
+  },
+  {
+    "id": "q30",
+    "difficulty": "Medium",
+    "question": "A team creates a one-page document outlining their value proposition, customer segments, channels, revenue streams, and cost structure. This tool is called:",
+    "options": [
+      { "id": "a", "text": "Gantt chart" },
+      { "id": "b", "text": "SWOT matrix" },
+      { "id": "c", "text": "Business Model Canvas" },
+      { "id": "d", "text": "Cash flow forecast" }
+    ],
+    "correctOptionId": "c"
+  }
+]
